@@ -1,9 +1,8 @@
 import setuptools
 
 INSTALL_REQUIRES = [
-    # 'requests>=2.11.1',
-    'pywallet>=0.1.0',
     'web3>=5.1.0'
+    'pywallet>=0.1.0',
 ]
 
 
