@@ -1,0 +1,36 @@
+include *.bat
+include *.py
+include *.txt
+include LICENSE
+include Makefile
+recursive-include build *.buildinfo
+recursive-include build *.css
+recursive-include build *.doctree
+recursive-include build *.eot
+recursive-include build *.html
+recursive-include build *.inv
+recursive-include build *.js
+recursive-include build *.pickle
+recursive-include build *.png
+recursive-include build *.svg
+recursive-include build *.ttf
+recursive-include build *.txt
+recursive-include build *.woff
+recursive-include build *.woff2
+recursive-include docs *.buildinfo
+recursive-include docs *.css
+recursive-include docs *.eot
+recursive-include docs *.html
+recursive-include docs *.inv
+recursive-include docs *.js
+recursive-include docs *.nojekyll
+recursive-include docs *.png
+recursive-include docs *.svg
+recursive-include docs *.ttf
+recursive-include docs *.txt
+recursive-include docs *.woff
+recursive-include docs *.woff2
+recursive-include docs *.yml
+recursive-include source *.py
+recursive-include source *.rst
+recursive-include tests *.txt
