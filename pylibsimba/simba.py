@@ -23,7 +23,7 @@ class Simbachain(SimbaBase):
 
         if 'info' in swagger and 'x-simba-attrs' in swagger['info']:
             self.metadata = swagger['info']['x-simba-attrs']
-        print("METADATA : {}".format(json.dumps( self.metadata)))
+        # print("METADATA : {}".format(json.dumps( self.metadata)))
 
     def call_method(self, method: str, parameters: dict):
         """
@@ -284,7 +284,7 @@ class Simbachain(SimbaBase):
         if not files:
             files = []
 
-        print("Method {} FormData {} Files {}".format(method, form_data, files))
+        # print("Method {} FormData {} Files {}".format(method, form_data, files))
 
         headers = self.api_auth_headers()
         if len(files):
@@ -301,7 +301,7 @@ class Simbachain(SimbaBase):
                 data=json.dumps(form_data),
                 headers=headers
             )
-        print("Called: {}, got: {}".format(method, resp.text))
+        # print("Called: {}, got: {}".format(method, resp.text))
         data = resp.json()
 
         if resp.status_code != requests.codes.ok:
@@ -322,7 +322,7 @@ class Simbachain(SimbaBase):
         data2 = resp2.json()
 
         if resp2.status_code != requests.codes.ok:
-            print("Got error code : {}".format(resp2.status_code))
+            # print("Got error code : {}".format(resp2.status_code))
             raise SubmitTransactionException(resp2.text)
 
         return txn_id

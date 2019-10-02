@@ -231,13 +231,13 @@ class SimbaBase(object):
         time_start = datetime.now(tz=timezone.utc)
         while should_continue:
             txn_data = self.get_transaction_status(txn_id)
-            print('got transaction status: {}'.format(txn_data))
+            # print('got transaction status: {}'.format(txn_data))
 
             txn_obj = self.check_transaction_status_from_object(txn_data)
-            print('checked transaction status: {}'.format(txn_obj))
+            # print('checked transaction status: {}'.format(txn_obj))
 
             done_resp = self.check_transaction_done(txn_obj)
-            print("Done resp : {}".format(done_resp))
+            # print("Done resp : {}".format(done_resp))
 
             if done_resp:
                 if txn_data['status'] == 'ERRORED':
@@ -248,7 +248,7 @@ class SimbaBase(object):
             # Wait a while and try again
             sleep(poll_interval)
             if datetime.now(tz=timezone.utc) > time_start + timedelta(milliseconds=timeout):
-                print("Timeout {} seconds reached, giving up".format(timeout))
+                # print("Timeout {} seconds reached, giving up".format(timeout))
                 should_continue = False
                 raise TimeoutError()
 
@@ -308,7 +308,7 @@ class SimbaBase(object):
             raise MethodCallValidationMetadataException("Method {} not found".format(method_name))
 
         method_meta = self.metadata['methods'][method_name]
-        print("Method meta {}".format(json.dumps(method_meta)))
+        # print("Method meta {}".format(json.dumps(method_meta)))
 
         if files and not '_files' in method_meta['parameters']:
             raise MethodCallValidationMetadataException("Method {} does not accept files".format(method_meta))
