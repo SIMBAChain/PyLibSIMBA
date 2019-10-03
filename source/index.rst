@@ -1,22 +1,21 @@
 .. pylibsimba documentation master file, created by
    sphinx-quickstart on Fri Sep 20 18:16:34 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
 Welcome to pylibsimba's documentation!
 ======================================
 
-pylibsimba package
-==================
+The pylibsimba module API reference
+===================================
+
+.. autosummary::
+   :toctree: _autosummary
+
+   pylibsimba
+   pylibsimba.simba.Simbachain
+   pylibsimba.wallet.Wallet
+   pylibsimba.pages.PagedResponse
 
 
-.. toctree::
-   :maxdepth: 2
-
-.. automodule:: pylibsimba
-
-.. autoclass:: pylibsimba.simba.Simbachain
-    :members:
 
 Indices and tables
 ==================

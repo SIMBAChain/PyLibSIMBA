@@ -302,7 +302,7 @@ class Simbachain(SimbaBase):
                 data=json.dumps(form_data),
                 headers=headers
             )
-        # print("Called: {}, got: {}".format(method, resp.text))
+        logging.info("Called: {}, got: {}".format(method, resp.text))
         data = resp.json()
 
         if resp.status_code != requests.codes.ok:
