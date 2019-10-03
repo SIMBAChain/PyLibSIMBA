@@ -1,4 +1,5 @@
 import json
+import logging
 from typing import Optional, Union
 
 import requests
@@ -307,6 +308,15 @@ class Simbachain(SimbaBase):
         if resp.status_code != requests.codes.ok:
             raise GenerateTransactionException(json.dumps(data))
 
+        txn_id = self._sign_and_send_transaction(data)
+        return txn_id
+
+    def _sign_and_send_transaction(self, data):
+        # logging.warning("RAW {}".format(data))
+
+        if data['status'] != "PENDING":
+            raise SubmitTransactionException("Should only be signing 'PENDING' transactions.")
+
         txn_id = data['id']
         payload = data['payload']['raw']
         signed = self.wallet.sign(payload)
@@ -319,12 +329,19 @@ class Simbachain(SimbaBase):
             headers=headers
         )
 
-        data2 = resp2.json()
-
         if resp2.status_code != requests.codes.ok:
-            # print("Got error code : {}".format(resp2.status_code))
-            raise SubmitTransactionException(resp2.text)
+            logging.warning("HTTP {} - {} - {}".format(resp2.status_code, resp2.headers['Content-Type'], resp2.text))
+            data2 = resp2.json()
 
+            if data2['error_code'] == 15001:
+                new_nonce = data2['extra_detail']['suggested_nonce']
+                data['payload']['raw']['nonce'] = new_nonce
+                response_txn_id = self._sign_and_send_transaction(data)
+                logging.warning('Updated nonce to {}'.format(data['payload']['raw']['nonce']))
+
+                return response_txn_id
+
+            raise SubmitTransactionException(resp2.text)
         return txn_id
 
     def get_transaction(self, transaction_id_or_hash):

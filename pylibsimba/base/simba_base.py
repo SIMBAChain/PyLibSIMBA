@@ -277,17 +277,7 @@ class SimbaBase(object):
             'APIKEY': self.management_key
         }
 
-     # * @private
-     # * Validate the method call against the app metadata
-     # * @param {string} methodName - the methods name
-     # * @param {Object} parameters - the parameters for the method call
-     # * @param {Array} [files] - Optional array of files
-     # * @returns {boolean}
-     # * @throws {MissingMetadataException} - App Metadata not yet retrieved
-     # * @throws {BadMetadataException} - App Metadata doesn't have methods
-     # * @throws {MethodCallValidationMetadataException} - Method call fails validation
-     # */
-    def validate_call(self, method_name, parameters, files=None) -> bool:
+    def validate_call(self, method_name: str, parameters: dict, files=None) -> bool:
         """
         Validate the method call against the app metadata
 
@@ -297,6 +287,10 @@ class SimbaBase(object):
             files: a list of file paths, optional
         Returns:
             True, if a valid call
+        Raises:
+            MissingMetadataException: If the App Metadata not yet retrieved.
+            BadMetadataException: If App Metadata doesn't have methods.
+            MethodCallValidationMetadataException: If the method isn't found, or files info is bad
         """
         if not self.metadata:
             raise MissingMetadataException("App Metadata not yet retrieved")
@@ -308,7 +302,6 @@ class SimbaBase(object):
             raise MethodCallValidationMetadataException("Method {} not found".format(method_name))
 
         method_meta = self.metadata['methods'][method_name]
-        # print("Method meta {}".format(json.dumps(method_meta)))
 
         if files and not '_files' in method_meta['parameters']:
             raise MethodCallValidationMetadataException("Method {} does not accept files".format(method_meta))
@@ -341,17 +334,20 @@ class SimbaBase(object):
 
         return True
 
-    # /**
-    #  * @private
-    #  * Validate the transaction list call against the app metadata
-    #  * @param {string} methodName - the methods name
-    #  * @param {Object} parameters - the parameters for the query
-    #  * @returns {boolean}
-    #  * @throws {MissingMetadataException} - App Metadata not yet retrieved
-    #  * @throws {BadMetadataException} - App Metadata doesn't have methods
-    #  * @throws {MethodCallValidationMetadataException} - Method call fails validation
-    #  */
-    def validate_get_call(self, method_name, parameters):
+    def validate_get_call(self, method_name: str, parameters: dict) -> bool:
+        """
+        Validate the method call against the app metadata
+
+        Args:
+            method_name : the method name
+            parameters : the parameters for the method call
+        Returns:
+            True, if a valid call
+        Raises:
+            MissingMetadataException: If the App Metadata not yet retrieved.
+            BadMetadataException: If App Metadata doesn't have methods.
+            MethodCallValidationMetadataException: If the method isn't found, or files info is bad
+        """
         if not self.metadata:
             raise MissingMetadataException("App Metadata not yet retrieved")
 
@@ -363,14 +359,17 @@ class SimbaBase(object):
 
         return True
 
-    # /**
-    #  * @private
-    #  * Validate the transaction list call against the app metadata
-    #  * @returns {boolean}
-    #  * @throws {MissingMetadataException} - App Metadata not yet retrieved
-    #  * @throws {BadMetadataException} - App Metadata doesn't have methods
-    #  */
-    def validate_any_get_call(self):
+    def validate_any_get_call(self) -> bool:
+        """
+        Validate the method call against the app metadata
+
+        Args:
+        Returns:
+            True, if a valid call
+        Raises:
+            MissingMetadataException: If the App Metadata not yet retrieved.
+            BadMetadataException: If App Metadata doesn't have methods.
+        """
         if not self.metadata:
             raise MissingMetadataException("App Metadata not yet retrieved")
 

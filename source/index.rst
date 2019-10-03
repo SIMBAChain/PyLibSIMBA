@@ -13,11 +13,10 @@ pylibsimba package
 .. toctree::
    :maxdepth: 2
 
-   pylibsimba.tests
-   pylibsimba.pylibsimba
-   pylibsimba.pylibsimba.base
-   pylibsimba.pylibsimba
+.. automodule:: pylibsimba
 
+.. autoclass:: pylibsimba.simba.Simbachain
+    :members:
 
 Indices and tables
 ==================

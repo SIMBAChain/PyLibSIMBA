@@ -3,6 +3,9 @@ from __future__ import annotations
 from pylibsimba.base.wallet_base import WalletBase
 from pylibsimba.simba import Simbachain
 
+import logging
+logging.getLogger(__name__).addHandler(logging.NullHandler())
+
 
 def get_simba_instance(url: str, wallet: WalletBase, api_key: str, management_key: str):
     # /**
@@ -29,4 +32,6 @@ def get_simba_instance(url: str, wallet: WalletBase, api_key: str, management_ke
         return simba
     else:
         # //scaas
+        logging.warning('SCaaS Support not yet implemented, sorry.')
+
         raise NotImplementedError("SCaaS Support not yet implemented, sorry.")

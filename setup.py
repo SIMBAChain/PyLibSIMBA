@@ -1,7 +1,7 @@
 import setuptools
 
 INSTALL_REQUIRES = [
-    'web3>=5.1.0'
+    'web3>=5.1.0',
     'pywallet>=0.1.0',
 ]
 
@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='PyLibSIMBA',
-    version='0.1.1',
+    version='0.1.3',
     packages=setuptools.find_packages(),
     url='https://simbachain.com/',
     license='License :: OSI Approved :: MIT License',
