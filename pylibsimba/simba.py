@@ -314,8 +314,8 @@ class Simbachain(SimbaBase):
     def _sign_and_send_transaction(self, data):
         # logging.warning("RAW {}".format(data))
 
-        if data['status'] != "PENDING":
-            raise SubmitTransactionException("Should only be signing 'PENDING' transactions.")
+        # if data['status'] != "PENDING":
+        #     raise SubmitTransactionException("Should only be signing 'PENDING' transactions.")
 
         txn_id = data['id']
         payload = data['payload']['raw']
@@ -330,16 +330,24 @@ class Simbachain(SimbaBase):
         )
 
         if resp2.status_code != requests.codes.ok:
-            logging.warning("HTTP {} - {} - {}".format(resp2.status_code, resp2.headers['Content-Type'], resp2.text))
+            logging.warning("HTTP {} - {} - {} - {}".format(
+                resp2.status_code,
+                resp2.headers['Content-Type'],
+                resp2.text,
+                data)
+            )
             data2 = resp2.json()
 
-            if data2['error_code'] == 15001:
-                new_nonce = data2['extra_detail']['suggested_nonce']
-                data['payload']['raw']['nonce'] = new_nonce
-                response_txn_id = self._sign_and_send_transaction(data)
-                logging.warning('Updated nonce to {}'.format(data['payload']['raw']['nonce']))
+            if 'errors' in data2:
+                if len(data2['errors']):
+                    if 'error_code' in data2['errors'][0]:
+                        if data2['errors'][0]['error_code'] == 15001:
+                            new_nonce = data2['extra_detail']['suggested_nonce']
+                            data['payload']['raw']['nonce'] = new_nonce
+                            response_txn_id = self._sign_and_send_transaction(data)
+                            logging.warning('Updated nonce to {}'.format(data['payload']['raw']['nonce']))
 
-                return response_txn_id
+                            return response_txn_id
 
             raise SubmitTransactionException(resp2.text)
         return txn_id

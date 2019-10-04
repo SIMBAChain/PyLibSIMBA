@@ -21,7 +21,7 @@ class WalletBase:
         """
         raise NotImplementedError('Wallet.unlockWallet Not Implemented')
 
-    def generate_wallet(self, mnemonic):
+    def generate_wallet(self, mnemonic: str = None):
         """
         Create a new wallet. Set self.wallet to the new wallet.
 

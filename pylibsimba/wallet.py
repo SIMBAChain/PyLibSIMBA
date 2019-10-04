@@ -20,7 +20,7 @@ class Wallet(WalletBase):
         """
         pass
 
-    def generate_wallet(self, mnemonic: str):
+    def generate_wallet(self, mnemonic: str = None):
         """
         Create a new wallet.
 
