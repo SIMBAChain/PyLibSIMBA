@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pylibsimba.simba.Simbachain &mdash; PyLibSIMBA 0.1.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pylibsimba.wallet.Wallet" href="pylibsimba.wallet.Wallet.html" />
+    <link rel="prev" title="pylibsimba" href="pylibsimba.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyLibSIMBA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pylibsimba.html">pylibsimba</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pylibsimba.simba.Simbachain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pylibsimba.wallet.Wallet.html">pylibsimba.wallet.Wallet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pylibsimba.pages.PagedResponse.html">pylibsimba.pages.PagedResponse</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLibSIMBA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>pylibsimba.simba.Simbachain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autosummary/pylibsimba.simba.Simbachain.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pylibsimba-simba-simbachain">
+<h1>pylibsimba.simba.Simbachain<a class="headerlink" href="#pylibsimba-simba-simbachain" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pylibsimba.simba.Simbachain">
+<em class="property">class </em><code class="sig-prename descclassname">pylibsimba.simba.</code><code class="sig-name descname">Simbachain</code><span class="sig-paren">(</span><em class="sig-param">endpoint: str</em>, <em class="sig-param">wallet</em><span class="sig-paren">)</span><a class="headerlink" href="#pylibsimba.simba.Simbachain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main object to interact with the PyLibSIMBA API</p>
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">endpoint: str</em>, <em class="sig-param">wallet</em><span class="sig-paren">)</span><a class="headerlink" href="#pylibsimba.simba.Simbachain.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.__init__" title="pylibsimba.simba.Simbachain.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(endpoint, wallet)</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.add_funds" title="pylibsimba.simba.Simbachain.add_funds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_funds</span></code></a>()</p></td>
+<td><p>Add funds to the attached Wallet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">api_auth_headers</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.call_method" title="pylibsimba.simba.Simbachain.call_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_method</span></code></a>(method, parameters)</p></td>
+<td><p>Call a method on the API</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.call_method_with_file" title="pylibsimba.simba.Simbachain.call_method_with_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_method_with_file</span></code></a>(method, parameters, files)</p></td>
+<td><p>Call a method on the API with files</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.check_transaction_done" title="pylibsimba.simba.Simbachain.check_transaction_done"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_transaction_done</span></code></a>(txn)</p></td>
+<td><p>Check if the transaction is complete</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.check_transaction_status" title="pylibsimba.simba.Simbachain.check_transaction_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_transaction_status</span></code></a>(txn_id)</p></td>
+<td><p>Gets the status of a transaction by ID</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.check_transaction_status_from_object" title="pylibsimba.simba.Simbachain.check_transaction_status_from_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_transaction_status_from_object</span></code></a>(txn)</p></td>
+<td><p>Gets the status of a transaction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_balance" title="pylibsimba.simba.Simbachain.get_balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_balance</span></code></a>()</p></td>
+<td><p>Get the balance for the attached Wallet</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_bundle_for_transaction" title="pylibsimba.simba.Simbachain.get_bundle_for_transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_bundle_for_transaction</span></code></a>(…[, stream])</p></td>
+<td><p>Gets the bundle for a transaction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_bundle_metadata_for_transaction" title="pylibsimba.simba.Simbachain.get_bundle_metadata_for_transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_bundle_metadata_for_transaction</span></code></a>(…)</p></td>
+<td><p>Gets the bundle metadata for a transaction</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_file_from_bundle_by_name_for_transaction" title="pylibsimba.simba.Simbachain.get_file_from_bundle_by_name_for_transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_from_bundle_by_name_for_transaction</span></code></a>(…)</p></td>
+<td><p>Gets a file from the bundle for a transaction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_file_from_bundle_for_transaction" title="pylibsimba.simba.Simbachain.get_file_from_bundle_for_transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_from_bundle_for_transaction</span></code></a>(…[, …])</p></td>
+<td><p>Gets a file from the bundle for a transaction</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_method_transactions" title="pylibsimba.simba.Simbachain.get_method_transactions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_method_transactions</span></code></a>(method, parameters)</p></td>
+<td><p>Gets a paged list of transactions for the method</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_transaction" title="pylibsimba.simba.Simbachain.get_transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_transaction</span></code></a>(transaction_id_or_hash)</p></td>
+<td><p>Gets a specific transaction</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_transaction_status" title="pylibsimba.simba.Simbachain.get_transaction_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_transaction_status</span></code></a>(transaction_id_or_hash)</p></td>
+<td><p>Gets the status of a specific transaction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.get_transactions" title="pylibsimba.simba.Simbachain.get_transactions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_transactions</span></code></a>(parameters)</p></td>
+<td><p>Gets a paged list of transactions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">management_auth_headers</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pylibsimba.simba.Simbachain.send_transaction_request" title="pylibsimba.simba.Simbachain.send_transaction_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_transaction_request</span></code></a>(url)</p></td>
+<td><p>Internal function for sending transaction GET requests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_api_key</span></code>(api_key)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_management_key</span></code>(management_key)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_wallet</span></code>(wallet)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_any_get_call</span></code>()</p></td>
+<td><p>Validate the method call against the app metadata</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_call</span></code>(method_name, parameters[, files])</p></td>
+<td><p>Validate the method call against the app metadata</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_get_call</span></code>(method_name, parameters)</p></td>
+<td><p>Validate the method call against the app metadata</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_for_success_or_error</span></code>(txn_id[, …])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.add_funds">
+<code class="sig-name descname">add_funds</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#pylibsimba.simba.Simbachain.add_funds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add funds to the attached Wallet.
+Please check the output of this method. It is of the form</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">{</span>
+    <span class="s1">&#39;txnId&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="s1">&#39;faucet_url&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="s1">&#39;poa&#39;</span><span class="p">:</span> <span class="bp">True</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If successful, txnId will be populated.</p>
+<p>If the network is PoA, then poa will be true, and txnId will be null.</p>
+<p>If the faucet for the network is external (e.g. Rinkeby, Ropsten, etc),
+then txnId will be null, and faucet_url will be populated with a URL.</p>
+<p>You should present this URL to your users to direct them to request funds there.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Details of the txn</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>MissingMetadataException</strong> – If the App Metadata not yet retrieved.</p></li>
+<li><p><strong>WalletNotFoundException</strong> – If there is no Wallet found.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.call_method">
+<code class="sig-name descname">call_method</code><span class="sig-paren">(</span><em class="sig-param">method: str</em>, <em class="sig-param">parameters: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#pylibsimba.simba.Simbachain.call_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call a method on the API</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> – the method to call</p></li>
+<li><p><strong>parameters</strong> – the parameters for the method</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A transaction id</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>WalletNotFoundException</strong> – If a wallet has not yet been initialised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.call_method_with_file">
+<code class="sig-name descname">call_method_with_file</code><span class="sig-paren">(</span><em class="sig-param">method: str</em>, <em class="sig-param">parameters: dict</em>, <em class="sig-param">files: list</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#pylibsimba.simba.Simbachain.call_method_with_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call a method on the API with files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> – the method to call</p></li>
+<li><p><strong>parameters</strong> – the parameters for the method</p></li>
+<li><p><strong>files</strong> – a list of file paths to be submitted with the API call</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A transaction id</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.check_transaction_done">
+<code class="sig-name descname">check_transaction_done</code><span class="sig-paren">(</span><em class="sig-param">txn: dict</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#pylibsimba.simba.Simbachain.check_transaction_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the transaction is complete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>txn</strong> – the transaction object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Is the transaction complete?</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.check_transaction_status">
+<code class="sig-name descname">check_transaction_status</code><span class="sig-paren">(</span><em class="sig-param">txn_id</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#pylibsimba.simba.Simbachain.check_transaction_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the status of a transaction by ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>txn_id</strong> – a transaction ID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An object with status details</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.check_transaction_status_from_object">
+<code class="sig-name descname">check_transaction_status_from_object</code><span class="sig-paren">(</span><em class="sig-param">txn: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#pylibsimba.simba.Simbachain.check_transaction_status_from_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the status of a transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>txn</strong> – A transaction object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An object with status details</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_balance">
+<code class="sig-name descname">get_balance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_balance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the balance for the attached Wallet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>txn_id</strong> – a transaction ID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An object with the balance</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>MissingMetadataException</strong> – If the App Metadata not yet retrieved.</p></li>
+<li><p><strong>WalletNotFoundException</strong> – If there is no Wallet found.</p></li>
+<li><p><strong>TransactionStatusCheckException</strong> – If the server response is not ok.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_bundle_for_transaction">
+<code class="sig-name descname">get_bundle_for_transaction</code><span class="sig-paren">(</span><em class="sig-param">transaction_id_or_hash: str</em>, <em class="sig-param">stream: bool = True</em><span class="sig-paren">)</span> &#x2192; requests.models.Response<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_bundle_for_transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the bundle for a transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transaction_id_or_hash</strong> – Either a transaction ID or a transaction hash</p></li>
+<li><p><strong>stream</strong> – A boolean to indicate if the file should be downloaded into memory or streamed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>a response type object which can be read, eg requests.models.Response</p>
+<p>In this case, using “stream=True” avoids downloading the file into memory first.</p>
+</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GetRequestException</strong> – If there is a problem getting the bundle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_bundle_metadata_for_transaction">
+<code class="sig-name descname">get_bundle_metadata_for_transaction</code><span class="sig-paren">(</span><em class="sig-param">transaction_id_or_hash: str</em><span class="sig-paren">)</span><a class="headerlink" href="#pylibsimba.simba.Simbachain.get_bundle_metadata_for_transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the bundle metadata for a transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>transaction_id_or_hash</strong> – Either a transaction ID or a transaction hash</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The bundle metadata</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GetRequestException</strong> – If there is a problem getting the bundle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_file_from_bundle_by_name_for_transaction">
+<code class="sig-name descname">get_file_from_bundle_by_name_for_transaction</code><span class="sig-paren">(</span><em class="sig-param">transaction_id_or_hash: str</em>, <em class="sig-param">file_name: str</em>, <em class="sig-param">stream: bool</em><span class="sig-paren">)</span> &#x2192; requests.models.Response<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_file_from_bundle_by_name_for_transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a file from the bundle for a transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transaction_id_or_hash</strong> – Either a transaction ID or a transaction hash</p></li>
+<li><p><strong>file_name</strong> – The name of the file in the bundle metadata</p></li>
+<li><p><strong>stream</strong> – A boolean to indicate if the file should be downloaded into memory or streamed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A response type object which can be read, eg requests.models.Response</p>
+<p>In this case, using “stream=True” avoids downloading the file into memory first.</p>
+</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GetRequestException</strong> – If there is a problem getting the bundle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_file_from_bundle_for_transaction">
+<code class="sig-name descname">get_file_from_bundle_for_transaction</code><span class="sig-paren">(</span><em class="sig-param">transaction_id_or_hash: str</em>, <em class="sig-param">file_idx: int</em>, <em class="sig-param">stream=False</em><span class="sig-paren">)</span> &#x2192; requests.models.Response<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_file_from_bundle_for_transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a file from the bundle for a transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transaction_id_or_hash</strong> – Either a transaction ID or a transaction hash</p></li>
+<li><p><strong>file_idx</strong> – The index of the file in the bundle metadata</p></li>
+<li><p><strong>stream</strong> – A boolean to indicate if the file should be downloaded into memory or streamed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>A response type object which can be read, eg requests.models.Response</p>
+<p>In this case, using “stream=True” avoids downloading the file into memory first.</p>
+</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GetRequestException</strong> – If there is a problem getting the bundle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_method_transactions">
+<code class="sig-name descname">get_method_transactions</code><span class="sig-paren">(</span><em class="sig-param">method: str</em>, <em class="sig-param">parameters: dict</em><span class="sig-paren">)</span> &#x2192; Optional[pylibsimba.pages.PagedResponse]<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_method_transactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a paged list of transactions for the method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> – The method</p></li>
+<li><p><strong>parameters</strong> – The query parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response wrapped in a PagedResponse helper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_transaction">
+<code class="sig-name descname">get_transaction</code><span class="sig-paren">(</span><em class="sig-param">transaction_id_or_hash</em><span class="sig-paren">)</span><a class="headerlink" href="#pylibsimba.simba.Simbachain.get_transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a specific transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>transaction_id_or_hash</strong> – Either a transaction ID or a transaction hash</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The transaction details</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GetTransactionsException</strong> – If there is a problem getting the transaction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_transaction_status">
+<code class="sig-name descname">get_transaction_status</code><span class="sig-paren">(</span><em class="sig-param">transaction_id_or_hash: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_transaction_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the status of a specific transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>transaction_id_or_hash</strong> – the id of the transaction</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A transaction id</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TransactionStatusCheckException</strong> – If the server response is not ok.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.get_transactions">
+<code class="sig-name descname">get_transactions</code><span class="sig-paren">(</span><em class="sig-param">parameters: dict</em><span class="sig-paren">)</span> &#x2192; pylibsimba.pages.PagedResponse<a class="headerlink" href="#pylibsimba.simba.Simbachain.get_transactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a paged list of transactions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parameters</strong> – The query parameters</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response wrapped in a PagedResponse helper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pylibsimba.simba.Simbachain.send_transaction_request">
+<code class="sig-name descname">send_transaction_request</code><span class="sig-paren">(</span><em class="sig-param">url: str</em><span class="sig-paren">)</span> &#x2192; pylibsimba.pages.PagedResponse<a class="headerlink" href="#pylibsimba.simba.Simbachain.send_transaction_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal function for sending transaction GET requests</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> – The URL</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response wrapped in a PagedResponse helper</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GetTransactionsException</strong> – If there is a problem getting the transaction</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pylibsimba.wallet.Wallet.html" class="btn btn-neutral float-right" title="pylibsimba.wallet.Wallet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pylibsimba.html" class="btn btn-neutral float-left" title="pylibsimba" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, SIMBA Chain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -21,7 +21,7 @@ copyright = '2019, SIMBA Chain'
 author = 'SIMBA Chain'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1'
+release = '0.1.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -41,6 +41,12 @@ extensions = [
 ]
 
 autodoc_default_flags = ['members']
+
+# This value contains a list of modules to be mocked up.
+# This is useful when some external dependencies are not met at build time and break the building process.
+# You may only specify the root package of the dependencies themselves and omit the sub-modules:
+autodoc_mock_imports = ["pywallet"]
+
 autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.

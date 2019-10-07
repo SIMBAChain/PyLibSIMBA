@@ -1,4 +1,5 @@
 import json
+import os
 
 from pylibsimba import get_simba_instance
 from pylibsimba.base.simba_base import SimbaBase
@@ -19,6 +20,8 @@ def test_001(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to generate a wallet')
+
     wallet = Wallet(None)
     wallet.generate_wallet('test1234')
     addr = wallet.get_address()
@@ -38,6 +41,7 @@ def test_002(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get a SIMBAChain instance')
     wallet = test_globals.wallet
 
     simba = get_simba_instance(
@@ -70,9 +74,9 @@ def test_003(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to call a method')
     simba = test_globals.simba
 
-    print('Call Simba Method')
     # These are the parameters to pass to the method call
     method_params = {
         'assetId': "0xbad65ff688a28efdd17d979c12f0ab2e2de305dbc8a2aa6be45ed644da822cfb",
@@ -99,6 +103,7 @@ def test_004(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to call the sendMessage method, and submitting files')
     simba = test_globals.simba
 
     # These are the parameters to pass to the method call
@@ -119,12 +124,12 @@ def test_004(test_globals):
 
     try:
         resp = simba.call_method_with_file('sendMessage', method_params, files)
-        print("Successful! {}".format(resp))
+        print("Successful submitting? {}".format(resp))
 
         # The request and signing were successful, now we wait for the API to
         # tell us if the txn was successful or not.
         resp = simba.wait_for_success_or_error(resp)
-        print("Successful? {}".format(resp))
+        print("Successfully deployed? {}".format(resp))
 
     except Exception as e1:
         print("Failure! {}".format(e1))
@@ -139,14 +144,15 @@ def test_005(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get a paged list of transactions for the method "createRoom"')
     simba = test_globals.simba
 
     method_params = {
         'createdBy_exact': "PyLibSIMBA"
     }
     result_pages = simba.get_method_transactions('createRoom', method_params)  # type: PagedResponse
-    print(result_pages.count())
-    print(result_pages.data())
+    print("Number of results for transaction {}: {}".format('createRoom', result_pages.count()))
+    print("Got data {}".format(result_pages.data()))
 
 
 def test_006(test_globals):
@@ -156,6 +162,7 @@ def test_006(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get a transaction by the ID')
     simba = test_globals.simba  # type: SimbaBase
 
     # This can be a transaction ID or Hash
@@ -172,6 +179,7 @@ def test_007(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get the metadata for a transaction, from the transaction hash')
     simba = test_globals.simba  # type: SimbaBase
 
     # This can be a transaction ID or Hash
@@ -192,6 +200,7 @@ def test_008(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get the bundle from a transaction, from the hash')
     simba = test_globals.simba  # type: SimbaBase
 
     # This can be a transaction ID or Hash
@@ -199,10 +208,15 @@ def test_008(test_globals):
 
     req = simba.get_bundle_for_transaction(transaction_hash, stream=True)
     req.raise_for_status()
+    output_file = 'the_bundle.zip'
     with open('the_bundle.zip', 'wb') as f:
         for chunk in req.iter_content(chunk_size=8192):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
+    print("Wrote file {}: {}".format(
+        output_file,
+        os.path.isfile(os.path.abspath(output_file)))
+    )
 
 
 def test_009(test_globals):
@@ -216,6 +230,7 @@ def test_009(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get the first file from a bundle, from the transaction hash')
     simba = test_globals.simba  # type: SimbaBase
 
     # This can be a transaction ID or Hash
@@ -223,11 +238,16 @@ def test_009(test_globals):
 
     req = simba.get_file_from_bundle_for_transaction(transaction_hash, 0, stream=True)
     req.raise_for_status()
-    with open('file_0.txt', 'wb') as f:
+
+    output_file = 'file_0.txt'
+    with open(output_file, 'wb') as f:
         for chunk in req.iter_content(chunk_size=8192):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
-
+    print("Wrote file {}: {}".format(
+        output_file,
+        os.path.isfile(os.path.abspath(output_file)))
+    )
     return {}
 
 
@@ -242,6 +262,7 @@ def test_010(test_globals):
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
     """
+    print('Running a test to get a specific file from a bundle, by name, from the transaction hash')
     simba = test_globals.simba  # type: SimbaBase
 
     # //This can be a transaction ID or Hash
@@ -251,11 +272,16 @@ def test_010(test_globals):
     filename = "File1.txt"
     req = simba.get_file_from_bundle_by_name_for_transaction(transaction_hash, filename, stream=True)
     req.raise_for_status()
-    with open('File1.txt', 'wb') as f:
+
+    output_file = 'File1.txt'
+    with open(output_file, 'wb') as f:
         for chunk in req.iter_content(chunk_size=8192):
             if chunk:  # filter out keep-alive new chunks
                 f.write(chunk)
-
+    print("Wrote file {}: {}".format(
+        output_file,
+        os.path.isfile(os.path.abspath(output_file)))
+    )
     return {}
 
 
@@ -270,12 +296,14 @@ def test_011(test_globals: TestGlobals, repeat: bool=False):
         test_globals : a convenience object to hold the SIMBA instance and wallet
         repeat : Toggle to run the second transaction
     """
+    print('Running a test to run two sendMessage methods in quick succession.')
     simba = test_globals.simba  # type: SimbaBase
 
     method_params = {
         'assetId': "A Test Room",
-        'room': "A Test Room",
-        'sender': "PyLibSIMBA"
+        'chatRoom': "A Test Room",
+        'sentBy': "PyLibSIMBA",
+        'message': "A simple message"
     }
     resp = simba.call_method('sendMessage', method_params)
     print("Successful 1 pre-wait? {}".format(resp))
@@ -285,8 +313,9 @@ def test_011(test_globals: TestGlobals, repeat: bool=False):
     if repeat:
         method_params = {
             'assetId': "A Test Room",
-            'room': "A Test Room",
-            'sender': "a different sender"
+            'chatRoom': "A Test Room",
+            'sentBy': "a different sender",
+            'message': "A simple message"
         }
         resp = simba.call_method('sendMessage', method_params)
         print("Successful 2 pre-wait? {}".format(resp))

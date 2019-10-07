@@ -1,0 +1,29 @@
+pylibsimba.base.wallet\_base.WalletBase
+=======================================
+
+.. currentmodule:: pylibsimba.base.wallet_base
+
+.. autoclass:: WalletBase
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~WalletBase.__init__
+      ~WalletBase.default_accept
+      ~WalletBase.delete_wallet
+      ~WalletBase.generate_wallet
+      ~WalletBase.get_address
+      ~WalletBase.sign
+      ~WalletBase.unlock_wallet
+      ~WalletBase.wallet_exists
+   
+   
+
+   
+   
+   

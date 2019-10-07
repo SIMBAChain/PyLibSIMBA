@@ -5,7 +5,7 @@ pylibsimba is a library simplifying the use of SIMBAChain APIs. We aim to abstra
 concepts, reducing the necessary time needed to get to working code.
 
 ### [🏠 Homepage](https://github.com/simbachain/pylibsimba#readme)
-### [📝 Documentation](https://simbachain.github.io/pylibsimba/)
+### [📝 Documentation](https://simbachain.github.io/PyLibSIMBA/)
 
 ## Install
 
@@ -33,17 +33,17 @@ from pylibsimba.wallet import Wallet
 
 ## Examples
 
-See [here](https://simbachain.github.io/pylibsimba/tests/examples.py)
+See [here](https://github.com/SIMBAChain/PyLibSIMBA/blob/master/tests/examples.py)
 
 ## Contributing
 
 Contributions, issues and feature requests are welcome!<br/>
-Feel free to check [issues page](https://github.com/simbachain/pylibsimba/issues).
+Feel free to check [issues page](https://github.com/SIMBAChain/PyLibSIMBA/issues).
 
 ## License
 
 Copyright © 2019 [SIMBAChain Inc](https://simbachain.com/).<br />
-This project is [MIT](https://github.com/SIMBAChain/pylibsimba/LICENSE) licensed.
+This project is [MIT](https://github.com/SIMBAChain/PyLibSIMBA/blob/master/LICENSE) licensed.
 
 ## Appendix
 

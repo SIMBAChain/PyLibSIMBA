@@ -1,8 +1,8 @@
-from pywallet.utils import HDPrivateKey, HDKey
 from pylibsimba.base.wallet_base import WalletBase
 from web3.auto import w3
 from pylibsimba.exceptions import WalletNotFoundException
-from pywallet import wallet
+from pywallet import wallet as py_wallet
+from pywallet.utils import HDPrivateKey, HDKey
 
 
 class Wallet(WalletBase):
@@ -27,10 +27,10 @@ class Wallet(WalletBase):
         Args:
             mnemonic : A string the wallet will use to create the wallet.
         """
-        # TODO actually use the key properly
         if not mnemonic:
-            mnemonic = wallet.generate_mnemonic()
-        self.wallet = wallet.create_wallet(network="ETH", seed=mnemonic, children=1)
+
+            mnemonic = py_wallet.generate_mnemonic()
+        self.wallet = py_wallet.create_wallet(network="ETH", seed=mnemonic, children=1)
 
         # print(w)
         # self.wallet = w3.eth.account.create(passkey)
@@ -80,7 +80,8 @@ class Wallet(WalletBase):
 
         return self.wallet["address"]
 
-    def _decode(self, pkey_hex: str):
+    @staticmethod
+    def _decode(pkey_hex: str):
         """
         How to get private key from ethereum wallet?
         With ideas from https://github.com/ranaroussi/pywallet/issues/17#issuecomment-438960200
@@ -89,11 +90,13 @@ class Wallet(WalletBase):
             pkey_hex : a 156 char hex key, to be decoded into a private key
         """
         assert len(pkey_hex) == 156
+
         pkey = HDPrivateKey.from_hex(pkey_hex)
         keys = HDKey.from_path(pkey, '{change}/{index}'.format(change=0, index=0))
         private_key = keys[-1]
-        public_key = private_key.public_key
+
+        # public_key = private_key.public_key
         # print('  Private key (hex, compressed): 0x' + private_key._key.to_hex())
         # print('  Address: ' + private_key.public_key.address())
-        return private_key._key.to_hex()
 
+        return private_key._key.to_hex()

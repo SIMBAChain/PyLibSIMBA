@@ -1,0 +1,29 @@
+pylibsimba.simba\_wallet.SIMBAWallet
+====================================
+
+.. currentmodule:: pylibsimba.simba_wallet
+
+.. autoclass:: SIMBAWallet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SIMBAWallet.__init__
+      ~SIMBAWallet.default_accept
+      ~SIMBAWallet.delete_wallet
+      ~SIMBAWallet.generate_wallet
+      ~SIMBAWallet.get_address
+      ~SIMBAWallet.sign
+      ~SIMBAWallet.unlock_wallet
+      ~SIMBAWallet.wallet_exists
+   
+   
+
+   
+   
+   

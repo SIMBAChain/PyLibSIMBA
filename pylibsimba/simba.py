@@ -4,7 +4,7 @@ from typing import Optional, Union
 
 import requests
 
-from pylibsimba import WalletBase
+# from pylibsimba.base.wallet_base import WalletBase
 from pylibsimba.exceptions import MissingMetadataException, WalletNotFoundException, GetTransactionsException, \
     GetRequestException, TransactionStatusCheckException, GenerateTransactionException, SubmitTransactionException
 from pylibsimba.pages import PagedResponse
@@ -12,11 +12,12 @@ from pylibsimba.base.simba_base import SimbaBase
 
 
 class Simbachain(SimbaBase):
+    """Main object to interact with the PyLibSIMBA API"""
 
     def set_wallet(self, wallet):
         pass
 
-    def __init__(self, endpoint: str, wallet: WalletBase):
+    def __init__(self, endpoint: str, wallet):
         super().__init__(endpoint, wallet)
 
         resp = requests.get("{}?format=openapi".format(self.endpoint))
@@ -303,11 +304,12 @@ class Simbachain(SimbaBase):
                 headers=headers
             )
         logging.info("Called: {}, got: {}".format(method, resp.text))
-        data = resp.json()
 
         if resp.status_code != requests.codes.ok:
-            raise GenerateTransactionException(json.dumps(data))
+            logging.warning("Called: {}, got: {} - {}".format(method, resp.status_code, resp.text))
+            raise GenerateTransactionException(resp.text)
 
+        data = resp.json()
         txn_id = self._sign_and_send_transaction(data)
         return txn_id
 
