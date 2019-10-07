@@ -340,14 +340,28 @@ class Simbachain(SimbaBase):
 
             if 'errors' in data2:
                 if len(data2['errors']):
-                    if 'error_code' in data2['errors'][0]:
-                        if data2['errors'][0]['error_code'] == 15001:
-                            new_nonce = data2['extra_detail']['suggested_nonce']
-                            data['payload']['raw']['nonce'] = new_nonce
-                            response_txn_id = self._sign_and_send_transaction(data)
-                            logging.warning('Updated nonce to {}'.format(data['payload']['raw']['nonce']))
+                    if 'code' in data2['errors'][0]['detail']:
+                        if data2['errors'][0]['detail']['code'] == 15001:
+                            if 'meta' in data2['errors'][0]['detail']:
+                                if 'suggested_nonce' in data2['errors'][0]['detail']['meta']:
+                                    new_nonce = data2['errors'][0]['detail']['meta']['suggested_nonce']
+                                    data['payload']['raw']['nonce'] = new_nonce
+                                    response_txn_id = self._sign_and_send_transaction(data)
+                                    logging.warning('Updated nonce to {}'.format(data['payload']['raw']['nonce']))
+                                    return response_txn_id
 
-                            return response_txn_id
+                                else:
+                                    logging.warning('No suggested_nonce supplied by server')
+                            else:
+                                logging.warning('No meta data supplied in error detail')
+                        else:
+                            logging.warning('Unrecognised error message {}'.format(
+                                data2['errors'][0]['detail']['code'])
+                            )
+                    else:
+                        logging.warning('No error code supplied in error detail')
+                else:
+                    logging.warning('No error code supplied in error detail')
 
             raise SubmitTransactionException(resp2.text)
         return txn_id
