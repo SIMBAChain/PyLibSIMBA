@@ -1,5 +1,7 @@
 # pylibsimba
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SIMBAChain/PyLibSIMBA/master?filepath=notebooks%2FSIMBAChain_test.ipynb)
+
 
 pylibsimba is a library simplifying the use of SIMBAChain APIs. We aim to abstract away the various blockchain 
 concepts, reducing the necessary time needed to get to working code.
