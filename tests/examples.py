@@ -174,7 +174,7 @@ def test_006(test_globals):
 
 def test_007(test_globals):
     """
-    Gets an the Transaction Metadata object for an existing example by the transaction hash.
+    Gets the Transaction Metadata object for an existing example by the transaction hash.
 
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
