@@ -1,12 +1,12 @@
-# pylibsimba
+# PyLibSIMBA
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SIMBAChain/PyLibSIMBA/master?filepath=notebooks%2FSIMBAChain_test.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SIMBAChain/PyLibSIMBA/master?filepath=notebooks%2FSIMBAChain_test_comments.ipynb)
 
 
 pylibsimba is a library simplifying the use of SIMBAChain APIs. We aim to abstract away the various blockchain 
 concepts, reducing the necessary time needed to get to working code.
 
-### [🏠 Homepage](https://github.com/simbachain/pylibsimba#readme)
+### [🏠 Homepage](https://github.com/simbachain/PyLibSIMBA#readme)
 ### [📝 Documentation](https://simbachain.github.io/PyLibSIMBA/)
 
 ## Install
@@ -18,15 +18,9 @@ The rest can be installed into a virtualenv with :
 
 	pip install pylibsimba
 
-### Install - from package
-
-	pip install dist/pylibsimba-0.1.tar.gz
-
-### Install - for development
-
-    pip install -r requirements.txt
-
 ## Usage
+
+The main imports required are:
 
 ```python
 from pylibsimba import get_simba_instance
@@ -39,12 +33,14 @@ See [here](https://github.com/SIMBAChain/PyLibSIMBA/blob/master/tests/examples.p
 
 ## Contributing
 
-Contributions, issues and feature requests are welcome!<br/>
+Contributions, issues and feature requests are welcome!
+
 Feel free to check [issues page](https://github.com/SIMBAChain/PyLibSIMBA/issues).
 
 ## License
 
-Copyright © 2019 [SIMBAChain Inc](https://simbachain.com/).<br />
+Copyright © 2019 [SIMBAChain Inc](https://simbachain.com/).
+
 This project is [MIT](https://github.com/SIMBAChain/PyLibSIMBA/blob/master/LICENSE) licensed.
 
 ## Appendix
@@ -61,3 +57,11 @@ Adding these lines to Makefile, so that calling *make github* puts the Sphinx do
 		@cp -a build/html/. ./docs
 		@echo "" > ./docs/.nojekyll
 		
+### Install - from package
+
+	pip install dist/pylibsimba-0.1.tar.gz
+
+### Install - for development
+
+    pip install -r requirements.txt
+    pip install -r requirements-full.txt

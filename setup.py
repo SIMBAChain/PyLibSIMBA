@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='PyLibSIMBA',
-    version='0.1.3',
+    version='0.1.4',
     packages=setuptools.find_packages(),
     url='https://simbachain.com/',
     license='License :: OSI Approved :: MIT License',
