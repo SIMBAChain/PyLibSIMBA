@@ -13,7 +13,7 @@ click==6.6
 cytoolz==0.10.0
 docker-py==1.8.0
 docutils==0.15.2
-ecdsa==0.13.2
+ecdsa>=0.13.3
 entrypoints==0.3
 eth-abi==2.0.0
 eth-account==0.4.0

@@ -3,6 +3,7 @@ import setuptools
 INSTALL_REQUIRES = [
     'web3>=5.1.0',
     'pywallet>=0.1.0',
+    'ecdsa>=0.13.3'
 ]
 
 
