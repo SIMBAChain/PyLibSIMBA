@@ -72,6 +72,7 @@ Adding these lines to Makefile, so that calling *make github* puts the Sphinx do
 ### v0.1.5
 * Changes to the shape server errors are returned in
 * Updates so nonce errors are retried with the suggested nonce returned from the server.
+* Updates so custom solidity code can be pushed to simbachain.com
 
 ### v0.1.0 - v0.1.4
 * Initial release and bugfixes
