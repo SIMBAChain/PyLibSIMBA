@@ -1,9 +1,9 @@
-import json
 import os
 from datetime import datetime, timezone, timedelta
 from time import sleep
 from typing import Optional, Union
 
+from pylibsimba.base.transaction_base import TransactionResponseBase
 from pylibsimba.exceptions import MissingMetadataException, BadMetadataException, MethodCallValidationMetadataException
 from pylibsimba.base.wallet_base import WalletBase
 from pylibsimba.pages import PagedResponse
@@ -23,7 +23,7 @@ class SimbaBase(object):
         self.management_key = None
         self.api_key = None
 
-    def call_method(self, method: str, parameters: dict) -> dict:
+    def call_method(self, method: str, parameters: dict) -> TransactionResponseBase:
         """
         Call a method on the API
 
@@ -124,6 +124,17 @@ class SimbaBase(object):
             GetTransactionsException: If there is a problem getting the transaction
         """
         raise NotImplementedError('SimbaBase.send_transaction_request Not Implemented')
+
+    def get_organisations(self):
+        """
+        Gets a paged list of organisations
+
+        Args:
+            base_url : Alternative base url if not https://api.simbachain.com/v1/
+        Returns:
+            A response wrapped in a PagedResponse helper
+        """
+        raise NotImplementedError('SimbaBase.get_organisations Not Implemented')
 
     def get_file_from_bundle_by_name_for_transaction(self, transaction_id_or_hash, file_idx, stream):
         """

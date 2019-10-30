@@ -1,7 +1,6 @@
 import json
 import os
-
-from pylibsimba import get_simba_instance
+from pylibsimba import get_simba_instance, util
 from pylibsimba.base.simba_base import SimbaBase
 from pylibsimba.pages import PagedResponse
 from pylibsimba.wallet import Wallet
@@ -86,7 +85,7 @@ def test_003(test_globals):
     # Call the `createRoom` method, with the above params. The txn is signed with the wallet we created/loaded above
     resp = simba.call_method('createRoom', method_params)
     try:
-        final_resp = simba.wait_for_success_or_error(resp)
+        final_resp = simba.wait_for_success_or_error(resp.transaction_id)
         print("Successful? {}".format(final_resp))
 
     except Exception as e1:
@@ -124,11 +123,11 @@ def test_004(test_globals):
 
     try:
         resp = simba.call_method_with_file('sendMessage', method_params, files)
-        print("Successful submitting? {}".format(resp))
+        print("Successful submit, transaction id? {}".format(resp.transaction_id))
 
         # The request and signing were successful, now we wait for the API to
         # tell us if the txn was successful or not.
-        resp = simba.wait_for_success_or_error(resp)
+        resp = simba.wait_for_success_or_error(resp.transaction_id)
         print("Successfully deployed? {}".format(resp))
 
     except Exception as e1:
@@ -285,16 +284,16 @@ def test_010(test_globals):
     return {}
 
 
-def test_011(test_globals: TestGlobals, repeat: bool=False):
+def test_011(test_globals: TestGlobals, repeat: bool = False, wait: bool = False):
     """
-    Submit a transaction "sendMessage" and wait for it to completely finish.
+    Submit a transaction "sendMessage" but do not wait for it to completely finish.
     The "repeat" option in intended to show how a second transaction should be done.
-    Using the wait_for_success_or_error() method in between the call_method() calls ensures that one the first
-    transaction is completely DEPLOYED to the blockchain before submitting again.
+    This is to show how the automated resubmission of
 
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
         repeat : Toggle to run the second transaction
+        wait : Wait for the transaction to finish, used to compare the output and speed
     """
     print('Running a test to run two sendMessage methods in quick succession.')
     simba = test_globals.simba  # type: SimbaBase
@@ -306,9 +305,12 @@ def test_011(test_globals: TestGlobals, repeat: bool=False):
         'message': "A simple message"
     }
     resp = simba.call_method('sendMessage', method_params)
-    print("Successful 1 pre-wait? {}".format(resp))
-    resp = simba.wait_for_success_or_error(resp)
-    print("Successful 1 post-wait? {}".format(resp))
+    # print("Successful 1 unsigned_request_object {}".format(resp.unsigned_request_object.json()))
+    # print("Successful 1 signed_request_object {}".format(resp.signed_request_object.json()))
+
+    if wait:
+        resp = simba.wait_for_success_or_error(resp.transaction_id)
+        print("Successful 1 post-wait? {}".format(resp))
 
     if repeat:
         method_params = {
@@ -318,9 +320,53 @@ def test_011(test_globals: TestGlobals, repeat: bool=False):
             'message': "A simple message"
         }
         resp = simba.call_method('sendMessage', method_params)
-        print("Successful 2 pre-wait? {}".format(resp))
-        resp = simba.wait_for_success_or_error(resp)
-        print("Successful 2 post-wait? {}".format(resp))
+        if wait:
+            print("Successful 2 pre-wait? {}".format(resp))
+            resp = simba.wait_for_success_or_error(resp.transaction_id)
+            print("Successful 2 post-wait? {}".format(resp))
+
+
+def test_012(test_globals: TestGlobals):
+    """
+    Get the organisations this user belongs to. This is useful when performing more low-level API calls.
+
+    Args:
+        test_globals : a convenience object to hold the SIMBA instance and wallet
+    """
+    simba = test_globals.simba  # type: SimbaBase
+    paged_response = simba.get_organisations()
+
+    for org in paged_response.data():
+        print(org['id'])
+
+
+def test_013(test_globals: TestGlobals):
+    """
+    Push arbitrary solidity code to simbachain.com
+
+    The create_contract() method takes four parameters:
+        The simba object
+        The path to a file containing the solidity code
+        The name to call the Smart Contract. This will be shown in the dashboard.
+        An organisation id. A user can be a member of multiple organisations, so this is the organisation the Smart
+        Contract will be associated with.
+
+    A contract name must be unique within an organisation, so we will add a timestamp to the name so this test
+    organisation will
+    accept it.
+
+    Args:
+        test_globals : a convenience object to hold the SIMBA instance and wallet
+    """
+    from _datetime import datetime
+    simba = test_globals.simba  # type: SimbaBase
+    response = util.create_contract(
+        simba,
+        '../tests/example.sol',
+        'example_contract_{}'.format(datetime.now().isoformat()),
+        '5cd5cef4cabb4b009e00b6b3ff45ee08'
+    )
+    print(response.text)
 
 
 if __name__ == "__main__":
@@ -329,12 +375,14 @@ if __name__ == "__main__":
 
     test_001(test_globals)
     test_002(test_globals)
-    test_003(test_globals)
-    test_004(test_globals)
-    test_005(test_globals)
-    test_006(test_globals)
-    test_007(test_globals)
-    test_008(test_globals)
-    test_009(test_globals)
-    test_010(test_globals)
-    test_011(test_globals, repeat=True)
+    # test_003(test_globals)
+    # test_004(test_globals)
+    # test_005(test_globals)
+    # test_006(test_globals)
+    # test_007(test_globals)
+    # test_008(test_globals)
+    # test_009(test_globals)
+    # test_010(test_globals)
+    # test_011(test_globals, repeat=True, wait=False)
+    # test_012(test_globals)
+    test_013(test_globals)

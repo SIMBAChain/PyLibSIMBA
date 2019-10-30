@@ -1,14 +1,13 @@
 import json
 import logging
 from typing import Optional, Union
-
 import requests
-
-# from pylibsimba.base.wallet_base import WalletBase
 from pylibsimba.exceptions import MissingMetadataException, WalletNotFoundException, GetTransactionsException, \
-    GetRequestException, TransactionStatusCheckException, GenerateTransactionException, SubmitTransactionException
+    GetRequestException, TransactionStatusCheckException, GenerateTransactionException, SubmitTransactionException, \
+    AddressMismatchException
 from pylibsimba.pages import PagedResponse
 from pylibsimba.base.simba_base import SimbaBase
+from pylibsimba.transaction_response import TwoPartTransactionResponse
 
 
 class Simbachain(SimbaBase):
@@ -27,7 +26,7 @@ class Simbachain(SimbaBase):
             self.metadata = swagger['info']['x-simba-attrs']
         # print("METADATA : {}".format(json.dumps( self.metadata)))
 
-    def call_method(self, method: str, parameters: dict):
+    def call_method(self, method: str, parameters: dict) -> TwoPartTransactionResponse:
         """
         Call a method on the API
 
@@ -229,7 +228,6 @@ class Simbachain(SimbaBase):
         resp = requests.post(
             '{}balance/{}/'.format(self.endpoint, address),
             data=json.dumps(request_data),
-            cache='no-cache',
             headers=headers
         )
 
@@ -268,7 +266,7 @@ class Simbachain(SimbaBase):
 
         return self._send_method_request(method, form_data, file_handles)
 
-    def _send_method_request(self, method: str, form_data: dict, files: dict = None) -> dict:
+    def _send_method_request(self, method: str, form_data: dict, files: dict = None) -> TwoPartTransactionResponse:
         """
         Internal method for sending method calls
 
@@ -310,8 +308,15 @@ class Simbachain(SimbaBase):
             raise GenerateTransactionException(resp.text)
 
         data = resp.json()
-        txn_id = self._sign_and_send_transaction(data)
-        return txn_id
+        resp2 = self._sign_and_send_transaction(data)
+
+        tr = TwoPartTransactionResponse()
+        tr.populate(
+            unsigned_request_object=resp,
+            signed_request_object=resp2
+        )
+
+        return tr
 
     def _sign_and_send_transaction(self, data):
         # logging.warning("RAW {}".format(data))
@@ -338,35 +343,51 @@ class Simbachain(SimbaBase):
                 resp2.text,
                 data)
             )
-            data2 = resp2.json()
+            if resp2.headers['Content-Type'] == 'application/json':
+                data2 = resp2.json()
 
-            if 'errors' in data2:
-                if len(data2['errors']):
-                    if 'code' in data2['errors'][0]['detail']:
-                        if data2['errors'][0]['detail']['code'] == 15001:
-                            if 'meta' in data2['errors'][0]['detail']:
-                                if 'suggested_nonce' in data2['errors'][0]['detail']['meta']:
-                                    new_nonce = data2['errors'][0]['detail']['meta']['suggested_nonce']
-                                    data['payload']['raw']['nonce'] = new_nonce
-                                    response_txn_id = self._sign_and_send_transaction(data)
-                                    logging.warning('Updated nonce to {}'.format(data['payload']['raw']['nonce']))
-                                    return response_txn_id
-
+                if 'errors' in data2:
+                    if len(data2['errors']):
+                        if 'code' in data2['errors'][0]:
+                            if data2['errors'][0]['code'] == '15001':
+                                if 'meta' in data2['errors'][0]:
+                                    if 'suggested_nonce' in data2['errors'][0]['meta']:
+                                        new_nonce = data2['errors'][0]['meta']['suggested_nonce']
+                                        data['payload']['raw']['nonce'] = new_nonce
+                                        logging.warning('Updating nonce to {}'.format(
+                                            data['payload']['raw']['nonce'])
+                                        )
+                                        # Overwrite the existing response with the new updated one
+                                        resp2 = self._sign_and_send_transaction(data)
+                                        logging.warning(
+                                            'After nonce update, sign and send, transaction_id is {}, status {}'.format(
+                                                txn_id,
+                                                resp2.json()
+                                            )
+                                        )
+                                        return resp2
+                                    else:
+                                        logging.warning('No suggested_nonce supplied by server')
                                 else:
-                                    logging.warning('No suggested_nonce supplied by server')
+                                    logging.warning('No meta data supplied in error detail')
+                            elif data2['errors'][0]['code'] == '15002':
+                                logging.warning('pylibsimba.exceptions.SubmitTransactionException : {}'.format(
+                                    data2['errors'][0])
+                                )
+                                raise AddressMismatchException(data2)
                             else:
-                                logging.warning('No meta data supplied in error detail')
+                                logging.warning('Unrecognised error code {} : {}'.format(
+                                    data2['errors'][0]['code'], data2['errors'][0])
+                                )
                         else:
-                            logging.warning('Unrecognised error message {}'.format(
-                                data2['errors'][0]['detail']['code'])
-                            )
+                            logging.warning('No error code supplied in error description')
                     else:
-                        logging.warning('No error code supplied in error detail')
-                else:
-                    logging.warning('No error code supplied in error detail')
+                        logging.warning('Errors detected, but no description supplied.')
+                raise SubmitTransactionException(data2)
+            else:
+                raise SubmitTransactionException(resp2.text)
 
-            raise SubmitTransactionException(resp2.text)
-        return txn_id
+        return resp2
 
     def get_transaction(self, transaction_id_or_hash):
         """
@@ -447,6 +468,25 @@ class Simbachain(SimbaBase):
             raise GetTransactionsException(json.dumps(json_resp))
 
         return PagedResponse(json_resp, url, self)
+
+    def get_organisations(self, base_url='https://api.simbachain.com/v1/') -> PagedResponse:
+        """
+        Gets a paged list of organisations
+
+        Args:
+            base_url : Alternative base url if not https://api.simbachain.com/v1/
+        Returns:
+            A response wrapped in a PagedResponse helper
+        """
+        self.validate_any_get_call()
+
+        response = requests.get("{}organisations/".format(base_url), headers=self.api_auth_headers())
+        json_resp = response.json()
+
+        if response.status_code != requests.codes.ok:
+            raise GetTransactionsException(json.dumps(json_resp))
+
+        return PagedResponse(json_resp, base_url, self)
 
     def get_bundle_metadata_for_transaction(self, transaction_id_or_hash: str):
         """

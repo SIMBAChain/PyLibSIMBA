@@ -65,3 +65,13 @@ Adding these lines to Makefile, so that calling *make github* puts the Sphinx do
 
     pip install -r requirements.txt
     pip install -r requirements-full.txt
+    
+    
+## Change log
+
+### v0.1.5
+* Changes to the shape server errors are returned in
+* Updates so nonce errors are retried with the suggested nonce returned from the server.
+
+### v0.1.0 - v0.1.4
+* Initial release and bugfixes
