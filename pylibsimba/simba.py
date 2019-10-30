@@ -238,7 +238,7 @@ class Simbachain(SimbaBase):
         })
         return data
 
-    def call_method_with_file(self, method: str, parameters: dict, files: list) -> dict:
+    def call_method_with_file(self, method: str, parameters: dict, files: list) -> TwoPartTransactionResponse:
         """
         Call a method on the API with files
 
