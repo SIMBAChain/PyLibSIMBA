@@ -352,8 +352,7 @@ def test_013(test_globals: TestGlobals):
         Contract will be associated with.
 
     A contract name must be unique within an organisation, so we will add a timestamp to the name so this test
-    organisation will
-    accept it.
+    organisation will accept it.
 
     Args:
         test_globals : a convenience object to hold the SIMBA instance and wallet
