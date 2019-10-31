@@ -1,4 +1,4 @@
-from __future__ import annotations
+# from __future__ import annotations
 from typing import Optional
 
 
@@ -13,7 +13,7 @@ class PagedResponse:
         self.results = data['results']
         self.simba = simba
 
-    def next(self) -> Optional[PagedResponse]:
+    def next(self): # -> Optional[PagedResponse]:
         """
         Grab the next page
 
@@ -24,7 +24,7 @@ class PagedResponse:
             return None
         return self.simba.send_transaction_request(self._next_page)
 
-    def previous(self) -> Optional[PagedResponse]:
+    def previous(self): # -> Optional[PagedResponse]:
         """
         Grab the previous page
 

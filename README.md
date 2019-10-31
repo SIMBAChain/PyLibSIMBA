@@ -69,6 +69,11 @@ Adding these lines to Makefile, so that calling *make github* puts the Sphinx do
     
 ## Change log
 
+### v0.1.6
+* Rollback to Python 3.6 for Azure compatibility
+
+https://github.com/Azure/azure-functions-core-tools/issues/872#issuecomment-539252042
+
 ### v0.1.5
 * Changes to the shape server errors are returned in
 * Updates so nonce errors are retried with the suggested nonce returned from the server.
