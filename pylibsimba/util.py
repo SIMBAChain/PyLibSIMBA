@@ -3,27 +3,27 @@ import requests
 import logging
 
 
-def create_contract(simba, contact_yaml_file, contract_name, org_id, url='https://api.simbachain.com/v1/'):
+def create_contract(simba, contact_sol_file, contract_name, org_id, url='https://api.simbachain.com/v1/'):
 
-    with open(contact_yaml_file, 'r') as f1:
-        contract_yaml = f1.read()
+    with open(contact_sol_file, 'r') as f1:
+        contract_sol = f1.read()
 
         resp = requests.post(
-            '{}contract_designs/'.format(url),
-            data={
-                "organisation": org_id,
-                "name": "{}".format(contract_name),
-                "code": b64encode(contract_yaml.encode()).decode('ascii'),
+            '{}scd/?save=true'.format(url),
+            json={
+                "code": b64encode(contract_sol.encode()).decode('ascii'),
                 "created_on": None,
                 "edited_on": None,
                 "is_public": False,
+                "mode": "code",
+                "model": None,
+                "name": "{}".format(contract_name),
+                "organisation": org_id,
                 "organisation_name": None,
-                "owner": None,
-                "smart_contract": None,
-                "status": None,
-                "transaction_hash": None,
+                "save_message": None,
+                "type": "solidity",
                 "version": None,
-                "yaml": None,
+                "is_contract_valid": False,
             },
             headers=simba.api_auth_headers()
         )

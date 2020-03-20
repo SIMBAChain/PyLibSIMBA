@@ -499,7 +499,7 @@ class Simbachain(SimbaBase):
         Raises:
             GetRequestException: If there is a problem getting the bundle
         """
-        url = '{}transaction/{}/bundle/'.format(self.endpoint, transaction_id_or_hash)
+        url = '{}transaction/{}/bundle_manifest'.format(self.endpoint, transaction_id_or_hash)
         response = requests.get(url, headers=self.api_auth_headers())
 
         if response.status_code != requests.codes.ok:
