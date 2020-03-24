@@ -5,7 +5,7 @@ attrdict==2.0.1
 attrs==19.1.0
 Babel==2.7.0
 base58==1.0.3
-bleach==3.1.1
+bleach==3.1.2
 certifi==2019.9.11
 chardet==3.0.4
 check-manifest==0.39
